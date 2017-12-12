@@ -1,0 +1,22 @@
+@charset "utf-8";
+/* CSS Document */
+.tb, .tb th, .tb td 
+{
+	border:1px solid #000;
+	padding: 10px;
+	border-collapse:collapse;
+}
+.tb th
+{
+	background-color:#6FC;
+}
+fieldset
+{
+	width:70%;
+	margin:0 auto;
+}
+.tb td img
+{
+	width:120px;
+	height:120px;
+}
