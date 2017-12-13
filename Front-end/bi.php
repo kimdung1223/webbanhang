@@ -77,6 +77,8 @@ iframe
               <div id="cont_right">
            		<div id="cont_right_title">
                 	<?php 
+						include "config.php";
+						include "autoload.php";
 						$obj = new sanpham();
 						$data=$obj->getOne("Bi");
 						echo $data[0]["tensp"];?>
@@ -92,7 +94,7 @@ iframe
                 </div>
                  <div>
                  	<div id="pro_price"> &nbsp;&nbsp;&nbsp;&nbsp;Giá : 20.000</div>
-                    <div id="pro_cart">&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div id="pro_cart">&nbsp;&nbsp;&nbsp;
                    		<button onclick="self.location.href='../Front-end/giohang.php?ac=add&amp;id=<?php echo $data[0]["masp"];?>'">Mua hàng</button>
                     
                     </div>

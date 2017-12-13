@@ -77,6 +77,8 @@ iframe
               <div id="cont_right">
            		<div id="cont_right_title">
                 	<?php 
+						include "config.php";
+				include "autoload.php";
 						$obj = new sanpham();
 						$data=$obj->getOne("DCG");
 						echo $data[0]["tensp"];?>

@@ -1,0 +1,24 @@
+@charset "utf-8";
+/* CSS Document */
+.tb
+{
+	height:600px;
+	margin: 0 auto;
+}
+.tb, .tb th, .tb td 
+{
+	border:1px solid #000;
+	padding: 5px;
+	border-collapse:collapse;
+}
+.tb th
+{
+	background-color:#6FC;
+}
+.tb td img
+{
+	width:50px;
+	height:50px;
+	
+	
+}

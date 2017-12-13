@@ -126,7 +126,7 @@
        		  <div class="product_box">
                 			<div class="pro_box_top"></div>
                     		<div class="pro_box_mid">
-                        	<div class="pro_title">Mascara dau dua</div>
+                        	<div class="pro_title">Mascara dầu dừa</div>
                         	<div class="pro_img"><a href="../mascara.php"><img src="../hinh/sp/Mas-Bi -Taytebao/masc.jpg" /></a></div>
                           <div class="pro_cart"></div>
                             <div class="pro_detail"><a href="../mascara.php">Chi tiết </a></div>
