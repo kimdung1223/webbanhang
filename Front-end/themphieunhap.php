@@ -10,7 +10,7 @@ if (isset($_POST['Submit']))
 	$manv=$_POST['manv'];
 	$ngay=$_POST['ngay'];
 	//$tien=$_POST['tongtien'];
-	$data = $obj->insert($mapn,$manv,$ngay,null);
+	$data = $obj->insert($mapn,$manv,$ngay,0);
 	
 }
 $data = $obj->getAll();

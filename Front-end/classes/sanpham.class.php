@@ -11,6 +11,12 @@ class sanpham extends Db
 		$sql ="select * from sanpham where masp = ? ";
 		return $this->query($sql, $arr);	
 	}
+	function getbyOne($ma)
+	{
+		$arr=array("$ma");
+		$sql="select * from sanpham where maloaisp=?";
+		return $this->query($sql,$arr);
+	}
 	function search($ten)
 	{
 		$arr = array("%$ten%");

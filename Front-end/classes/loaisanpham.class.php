@@ -5,6 +5,10 @@ class loaisanpham extends Db
 	{
 		return $this->query("select * from loaisanpham");
 	}
+	function getAllSP()
+	{
+		return $this->query("select * from sanpham");
+	}
 	function getOne($ma)
 	{
 		$arr = array("$ma");
@@ -36,6 +40,12 @@ class loaisanpham extends Db
 		$sql="update loaisanpham set tenloaisp = :T
 									  where maloaisp =:M";
 		$arr = array(":M" => $ma, ":T" => $ten);
+		return $this->query($sql,$arr);
+	}
+	function getbyOne($ma)
+	{
+		$arr=array("$ma");
+		$sql="select count(*) from sanpham where maloaisp=?";
 		return $this->query($sql,$arr);
 	}
 }

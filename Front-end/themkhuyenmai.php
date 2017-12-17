@@ -19,7 +19,7 @@ if (isset($_POST['Submit']))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Khuyến mãi</title>
-<link rel="stylesheet" href="css/form.css"/>
+<link rel="stylesheet" href=""/>
 <link rel="stylesheet" href="css/main_ad.css"/>
 </head>
 

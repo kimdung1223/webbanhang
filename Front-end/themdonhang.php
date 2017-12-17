@@ -4,7 +4,7 @@ include "autoload.php";
 $obj = new donhang();
 $o2 = new nhanvien();
 //print_r($_POST);
-if (isset($_POST['Submit']))
+if (isset($_POST['sm']))
 {
 	$ma=$_POST['madh'];
 	$manv=$_POST['manv'];
@@ -14,7 +14,7 @@ if (isset($_POST['Submit']))
 	$ngay=$_POST['ngaylapdh'];
 	/*$tien=$_POST['tongtien'];*/
 	$trangthai=$_POST['tinhtrang'];
-	$data = $obj->insert($ma,$manv,$ten,$dc,$dt,$ngay,NULL,$trangthai);
+	$data = $obj->insert($ma,$manv,$ten,$dc,$dt,$ngay,0,$trangthai);
 	
 }
 $data = $obj->getAll();
@@ -111,14 +111,19 @@ $a= $o2->getAll();
     </tr>
    <tr>
     	<td>Tình trạng đơn hàng :</td>
-        <td><input type="text" name="tinhtrang" /></td>
+        <td>
+        	<select name="tinhtrang" >
+        		<option>Đã xử lý</option>
+                <option> Chưa xử lý</option>
+            </select>
+        
+        </td>
 
     </tr>
     <tr>
     	<td colspan="2" align="center">
-        	<input type="submit" value="Thêm" name="Submit"/> &nbsp;
-            <a href="themchitietdonhang.php"><input type="button" value=" Chi tiết đơn hàng" name="ctdh"/></
-        </td>
+        	<input type="submit" value="Thêm" name="sm"/> &nbsp;
+            <a href="themchitietdonhang.php"><input type="button" value=" Chi tiết đơn hàng" name="ctdh"/></td>
         
     </tr>
 </table>
@@ -152,12 +157,18 @@ foreach($data as $r)
         <td><?php echo $r["tongtien"]; ?></td>
         <td><?php echo $r["tinhtrangdh"]; ?></td>
         <td>
-        <a href="xoadonhang.php?madh=<?php echo $r["madh"]; ?>">Xóa</a><br/>
+        <?php 
+		if(strcmp($r["tinhtrangdh"],"Đã xử lý")==0)
+		{
+			echo "x";
+		}
+		else
+		{?>
+        	<a href="xoadonhang.php?madh=<?php echo $r["madh"]; ?>">Xóa</a><br/><?php }?>
         </td>
     </tr>
     <?php
-}
-?>
+}?>
 </table>
 </body>
 </html>

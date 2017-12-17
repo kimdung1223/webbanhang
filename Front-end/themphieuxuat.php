@@ -13,7 +13,7 @@ if (isset($_POST['Submit']))
 	$madh=$_POST['madh'];
 	$manv=$_POST['manv'];
 	$ngay=$_POST['ngay'];
-	$data = $obj->insert($mapn,$madh,$manv,$ngay,null);
+	$data = $obj->insert($mapn,$madh,$manv,$ngay,0);
 	
 }
 $data = $obj->getAll();

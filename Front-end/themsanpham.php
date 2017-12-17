@@ -156,7 +156,7 @@ foreach($data as $r)
     	<td> <?php echo $r["maloaisp"]; ?></td>
         <td> <?php echo $r["masp"]; ?></td>
         <td><?php echo $r["tensp"]; ?></td>
-        <td><img src="hinh/<?php echo $r["hinhanh"]; ?>"/></td>
+        <td><img src="hinhanh/<?php echo $r["hinhanh"]; ?>"/></td>
         <td> <?php echo $r["motasp"]; ?></td>
         <td> <?php echo $r["dvt"]; ?></td>
         <td> <?php echo $r["giatien"]; ?></td>

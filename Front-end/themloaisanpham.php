@@ -70,6 +70,7 @@ if (isset($_POST['Submit']))
     </tr>
     <tr>
     	<td>Tên loại:</td>
+        
         <td><input type="text" name="tenloai" /></td>
     </tr>
     <tr>
@@ -93,7 +94,16 @@ foreach($data as $r)
 { ?>
     <tr>
     	<td> <?php echo $r["maloaisp"]; ?></td><!-- tên bảng-->
-        <td><?php echo $r["tenloaisp"]; ?></td>
+        <td><?php echo $r["tenloaisp"];
+		$obj = new loaisanpham();
+		//$ma = $_GET["maloai"];
+		$a=$obj->getbyOne( $r["maloaisp"]);
+		print_r($a);
+		/*if($a!=Array())
+		{
+			echo "(".count($a) .")";
+		}*/
+?> ?></td>
         <td>
         <a href="xoaloaisanpham.php?maloai=<?php echo $r["maloaisp"]; ?>">Xóa</a> &nbsp;
         <a href="sualoaisanpham.php?maloai=<?php echo $r["maloaisp"]; ?>">Sửa</a>
