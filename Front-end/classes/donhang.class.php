@@ -43,5 +43,11 @@ class donhang extends Db
 		$arr = array(":M"=>$ma,":MNV" => $manv,":H" => $ten, ":D" => $dc,":DT"=>$dt,":N"=>$ngay,":T"=>$tongtien,":TT" => $ttrang);
 		return $this->query($sql,$arr);
 	}
+	function getbyOnePX($ma)
+	{
+		$arr=array("$ma");
+		$sql="select * from phieuxuat where madh=?";
+		return $this->query($sql,$arr);
+	}
 }
 ?>

@@ -10,7 +10,22 @@ if (isset($_POST['Submit']))
 	$ma = $_POST['matt'];
 	$ten = $_POST['tentt'];
 	$nd=$_POST['nd'];
-	$data = $obj->insert($manv,$ma,$ten,$nd);
+	if($ma=="")
+	{
+		echo "Vui lòng nhập mã!";
+	}
+	else if($ten=="")
+	{
+		echo "Vui lòng nhập tên tin tức!";
+	}
+	else if($nd=="")
+	{
+		echo "Vui lòng nhập nội dung!";
+	}
+	else
+	{
+		$data = $obj->insert($manv,$ma,$ten,$nd);
+	}
 }
 	$data = $obj->getAll();
 	$a=$o2->getAll();

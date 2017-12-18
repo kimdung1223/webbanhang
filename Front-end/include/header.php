@@ -1,3 +1,4 @@
+
 <div id="top_left">
 	<form action="timkiem.php" method="post">
         <table  align="center">
@@ -8,6 +9,12 @@
 </div>
  
             <div id="top_right">
+            	<?php 
+				if (isset($_SESSION['un']))
+					{
+						echo "<b>Chào&nbsp;".$_SESSION['un']."</b>";
+					}
+				?>
                 <img src="hinh/contact-new.png" /> <a href="reg.php">&nbsp;Đăng ký</a>
                 &nbsp;&nbsp;
                 <img src="hinh/login.PNG" width="18px" height="14px"/><a href="login.php">&nbsp;Đăng nhập</a>

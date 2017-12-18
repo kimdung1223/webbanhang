@@ -10,8 +10,14 @@ if (isset($_POST['Submit']))
 	$manv=$_POST['manv'];
 	$ngay=$_POST['ngay'];
 	//$tien=$_POST['tongtien'];
-	$data = $obj->insert($mapn,$manv,$ngay,0);
-	
+	if($mapn=="")
+	{
+		echo "Vui lòng nhập mã phiếu nhập!";
+	}
+	else
+	{
+		$data = $obj->insert($mapn,$manv,$ngay,0);
+	}
 }
 $data = $obj->getAll();
 $a= $o2->getAll();

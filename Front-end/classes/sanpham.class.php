@@ -53,5 +53,29 @@ class sanpham extends Db
 		$sql ="select * from sanpham where masp = '$id' ";
 		return $this->queryCart($sql);
 	}
+	function getbyOneCTDH($ma)
+	{
+		$arr=array("$ma");
+		$sql="select * from chitietdonhang where masp=?";
+		return $this->query($sql,$arr);
+	}
+	function getbyOneCTPN($ma)
+	{
+		$arr=array("$ma");
+		$sql="select * from chitietphieunhap where masp=?";
+		return $this->query($sql,$arr);
+	}
+	function getbyOneCTPX($ma)
+	{
+		$arr=array("$ma");
+		$sql="select * from chitietphieuxuat where masp=?";
+		return $this->query($sql,$arr);
+	}
+	function getbyOneBLSP($ma)
+	{
+		$arr=array("$ma");
+		$sql="select * from binhluansp where masp=?";
+		return $this->query($sql,$arr);
+	}
 }
 ?>

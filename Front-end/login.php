@@ -2,7 +2,7 @@
 include "config.php";
 include "autoload.php";
 $obj = new khachhang();
-if (!isset($_SESSION)) session_start();
+//if (!isset($_SESSION)) session_start();
 if(isset($_POST['sm']))
 {
 	$un = $_POST["un"];
@@ -23,7 +23,7 @@ if(isset($_POST['sm']))
       {
 		    if($v['tendangnhap']==$un && $v['matkhau']==$pw)
 		    {
-		    	$_SESSION["un"] = $un;
+		    	$_SESSION["usn"] = $un;
 				 
 		    	header("location:index.php");
 		    	
@@ -34,10 +34,10 @@ if(isset($_POST['sm']))
     }
 }
 
-if (isset($_SESSION['un']))
+/*if (isset($_SESSION['un']))
 {
 	echo "<b>Chào&nbsp;".$_SESSION['un']."</b>";
-}
+}*/
 ?>
 <!DOCTYPE html>
 <html>

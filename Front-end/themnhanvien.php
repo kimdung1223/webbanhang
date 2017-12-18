@@ -2,6 +2,12 @@
 include "config.php";
 include "autoload.php";
 $obj = new nhanvien();
+function checkEmail($string)
+{
+  if (preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/", $string))
+   return true;
+  return false; 
+}
 if (isset($_POST['Submit']))
 {
 	$ma = $_POST['manv'];
@@ -15,7 +21,46 @@ if (isset($_POST['Submit']))
 	$l=$_POST['luong'];
 	$tendn=$_POST['tendn'];
 	$mk=$_POST['mk'];
-	$data = $obj->insert($ma,$ten,$gt,$ns,$dc,$dt,$e,$cv,$l,$tendn,$mk);
+	if($ma=="")
+	{
+		echo "Vui lòng nhập mã!";
+	}
+	else if($ten=="")
+	{
+		echo "Vui lòng nhập họ tên!";
+	}
+	else if($dc=="")
+	{
+		echo "Vui lòng nhập địa chỉ!";
+	}
+	else if($e=="")
+	{
+		echo "Vui lòng nhập email!";
+	}
+	else if(checkEmail($e)==false)
+	{
+		echo "Định dạng email sai!!!";
+	}
+	else if($l=="")
+	{
+		echo "Vui lòng nhập lương!";
+	}
+	else if($cv=="")
+	{
+		echo "Vui lòng nhập chức vụ!";
+	}
+	else if($tendn=="")
+	{
+		echo "Vui lòng nhập tên đăng nhập!";
+	}
+	else if($mk=="")
+	{
+		echo "Vui lòng nhập mật khẩu!";
+	}
+	else
+	{
+		$data = $obj->insert($ma,$ten,$gt,$ns,$dc,$dt,$e,$cv,$l,$tendn,$mk);
+	}
 }
 	$data = $obj->getAll();
 ?>
@@ -96,7 +141,7 @@ if (isset($_POST['Submit']))
      </tr>
      <tr>
      	<td>Điện thoại : </td>
-        <td><input type="text" name="dt"/></td>
+        <td><input type="number" name="dt" placeholder="Phải nhập số!"/></td>
      </tr>
      <tr>
      	<td>Email :</td>
@@ -108,7 +153,7 @@ if (isset($_POST['Submit']))
      </tr>
      <tr>
      	<td>Lương :</td>
-        <td><input type="text" name="luong"/></td>
+        <td><input type="number" name="luong"/></td>
      </tr>
      <tr>
      	<td>Tên đăng nhập :</td>
@@ -146,8 +191,25 @@ if (isset($_POST['Submit']))
 foreach($data as $r)
 { ?>
     <tr>
-    	<td> <?php echo $r["manv"]; ?></td><!-- tên bảng-->
-        <td><?php echo $r["hotennv"]; ?></td>
+    	<td><?php echo $r["manv"];?></td><!-- tên bảng-->
+        <td>
+			<b><?php  echo $r["hotennv"]; ?></b>
+        	<?php
+				$obj = new nhanvien();
+				$a=$obj->getbyOneDH( $r["manv"]);
+				$b=$obj->getbyOnePN( $r["manv"]);
+				$c=$obj->getbyOnePX( $r["manv"]);
+				$d=$obj->getbyOneTT( $r["manv"]);
+				$e=$obj->getbyOneBLSP( $r["manv"]);
+				$f=$obj->getbyOnePH( $r["manv"]);
+				echo "<br>(Lập&nbsp;".count($a)."&nbsp;đơn hàng";
+				echo "<br>  Lập&nbsp;".count($b)."&nbsp;phiếu nhập";
+				echo "<br>  Lập&nbsp;".count($c)."&nbsp;phiếu xuất";
+				echo "<br>  Viết&nbsp;".count($d)."&nbsp;bài tin";
+				echo "<br>  Trả lời&nbsp;".count($e)."&nbsp;bình luận";
+				echo "<br>  Trả lời&nbsp;".count($f)."&nbsp;phản hồi)";
+		  ?>
+        </td>
         <td><?php echo $r["gioitinh"]; ?></td>
         <td><?php echo $r["ngaysinhnv"]; ?></td>
         <td><?php echo $r["diachinv"]; ?></td>

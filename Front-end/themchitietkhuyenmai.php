@@ -13,8 +13,18 @@ if (isset($_POST['sm']))
 	$masp=$_POST['masp'];
 	$nd=$_POST['nd'];
 	$pt=$_POST['pt'];
-	$data = $obj->insert($ma,$masp,$nd,$pt);
-	
+	if($ma=="")
+	{
+		echo"Vui lòng nhập mã!";
+	}
+	else if($nd=="")
+	{
+		echo "Vui lòng nhập nội dung!";
+	}
+	else
+	{
+		$data = $obj->insert($ma,$masp,$nd,$pt);
+	}
 }
 $data = $obj->getAll();
 $a= $o2->getAll();
@@ -101,7 +111,7 @@ $b=$o3->getAll();
     </tr>
      <tr>
     	<td>Phần trăm giảm giá :</td>
-        <td><input type="text" name="pt" placeholder="Phải nhập số!" /></td>
+        <td><input type="number" name="pt" placeholder="Phải nhập số!" /></td>
     </tr>
     <tr>
     	<td colspan="2" align="center">

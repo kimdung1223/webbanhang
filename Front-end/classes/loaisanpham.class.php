@@ -45,7 +45,7 @@ class loaisanpham extends Db
 	function getbyOne($ma)
 	{
 		$arr=array("$ma");
-		$sql="select count(*) from sanpham where maloaisp=?";
+		$sql="select * from sanpham where maloaisp=?";
 		return $this->query($sql,$arr);
 	}
 }

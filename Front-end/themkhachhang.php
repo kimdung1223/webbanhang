@@ -2,6 +2,12 @@
 include "config.php";
 include "autoload.php";
 $obj = new khachhang();
+function checkEmail($string)
+  {
+  if (preg_match("/^[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+\.[a-zA-Z.]{2,5}$/", $string))
+   return true;
+  return false; 
+  }
 if (isset($_POST['Submit']))
 {
 	$ma = $_POST['makhachhang'];
@@ -13,8 +19,43 @@ if (isset($_POST['Submit']))
 	$e=$_POST['email'];
 	$tendn=$_POST['tendn'];
 	$mk=$_POST['mk'];
-	$data = $obj->insert($ma,$ten,$gt,$ns,$dc,$dt,$e,$tendn,$mk);
-}
+	if($ma=="")
+	{
+		echo "Vui lòng nhập mã!";
+	}
+	else if($ten=="")
+	{
+		echo "Vui lòng nhập họ tên!";
+	}
+	else if($dc=="")
+	{
+		echo "Vui lòng nhập địa chỉ!";
+	}
+	else if($dt=="")
+	{
+		echo "Vui lòng nhập số điện thoại!";
+	}
+	else if($e=="")
+	{
+		echo"Vui lòng nhập email!";
+	}
+	else if(checkEmail($e)==false)
+	{
+		echo "Định dạng email sai!";
+	}
+	else if($tendn=="")
+	{
+		echo "Vui lòng nhập tên đăng nhập!";
+	}
+	else if($mk=="")
+	{
+		echo "Vui lòng nhập mật khẩu!";
+	}
+	else
+	{
+		$data = $obj->insert($ma,$ten,$gt,$ns,$dc,$dt,$e,$tendn,$mk);
+	}
+	}
 	$data = $obj->getAll();
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -94,7 +135,7 @@ if (isset($_POST['Submit']))
      </tr>
      <tr>
      	<td>Điện thoại : </td>
-        <td><input type="text" name="dt"/></td>
+        <td><input type="number" name="dt" placeholder="Phải nhập số!"/></td>
      </tr>
      <tr>
      	<td>Email :</td>
@@ -118,7 +159,7 @@ if (isset($_POST['Submit']))
 <table class="tb" align="center">
 <thead>
 <tr>
-	<th> Mã khách hàng</th>
+	<th>Mã khách hàng</th>
     <th>Họ tên khách hàng</th>
     <th>Giới tính</th>
     <th>Ngày sinh </th>
@@ -135,7 +176,16 @@ foreach($data as $r)
 { ?>
     <tr>
     	<td> <?php echo $r["makh"]; ?></td><!-- tên bảng-->
-        <td><?php echo $r["hotenkh"]; ?></td>
+        <td width="15%">
+			<b><?php echo $r["hotenkh"]; ?></b>
+        	<?php
+				$obj = new khachhang();
+				$a=$obj->getbyOnePH( $r["makh"]);
+				$b=$obj->getbyOneBLSP($r["makh"]);
+				echo "<br>(Gửi&nbsp;".count($a)."&nbsp;phản hồi <br>";
+				echo "&nbsp;Gửi".count($b)."&nbsp;bình luận sản phẩm)";
+			?>
+        </td>
         <td><?php echo $r["gioitinh"]; ?></td>
         <td><?php echo $r["ngaysinh"]; ?></td>
         <td><?php echo $r["diachikh"]; ?></td>

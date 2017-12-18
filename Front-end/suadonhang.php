@@ -3,25 +3,23 @@
 //5. dong ket noi
 include "config.php";
 include "autoload.php";
-$obj = new khuyenmai();
-$ma = $_GET["makm"];
+$obj = new donhang();
+$o3 = new nhanvien();
+$ma = $_GET["madh"];
 if(isset($_POST['sm']))
 {
-	$ten = $_POST["tenkm"];
-	$ngaybd=$_POST["ngaybd"];
-	$ngaykt=$_POST["ngaykt"];
-	if(strtotime($ngaybd) > strtotime($ngaykt) )
-	{
-		echo "Ngày kết thúc phải sau ngày bắt đầu!";
-	}
-	else
-	{
-		$data = $obj->update($ma,$ten,$ngaybd,$ngaykt);
-		header("location:themkhuyenmai.php");
-	}
+	$ma=$_POST['madh'];
+	$manv=$_POST['manv'];
+	$ten=$_POST['hoten'];
+	$dc=$_POST['dc'];
+	$dt=$_POST['dt'];
+	$ngay=$_POST['ngaylapdh'];
+	$trangthai=$_POST['tinhtrang'];
+	header("location:themdonhang.php");
 }
 	$o2 = $obj->getOne($ma);
 	$data=$obj->getAll();
+	$a=$o3->getAll();
 ?>
 <link rel="stylesheet" href="css/main_ad.css"/>
 <link rel="stylesheet" href="css/form.css"/>
@@ -63,29 +61,56 @@ if(isset($_POST['sm']))
             </div>
         </div>
     </div>
-
 <fieldset>
-<legend>Nhập thông tin khuyến mãi</legend>
+<legend>Nhập thông tin đơn hàng</legend>
 <form method="post" action="" enctype="multipart/form-data">
 	<?php
 	foreach ($o2 as $v) {
 		?>
         <table align="center">
 		<tr>
-        	<td>Mã khuyến mãi :</td>
-            <td><input type="text" name="makm" value="<?php echo $v["makm"];?>" disabled /></td>
+        	<td>Mã đơn hàng :</td>
+            <td><input type="text" name="madh" value="<?php echo $v["madh"];?>" disabled /></td>
         </tr>
        	<tr>
-            <td>Tên khuyến mãi:</td>
-            <td><input type="text" name="tenkm" value="<?php echo $v["tenkm"];?>" /></td>
+            <td>Mã nhân viên:</td>
+            <td><select name="manv" >
+                            <?php
+                                foreach($a as $x)
+                                { ?>
+                                    <option value="<?php echo $v["manv"]; ?>" 
+                                    	<?php
+										if($x["manv"]==$v["manv"])
+											echo "selected"; ?>
+                                    	><?php echo $x["manv"]; ?></option>
+                                    <?php
+                                } ?>
+                                </select></br></td>
         </tr>
         <tr>
-            <td>Ngày bắt đầu :</td>
-            <td><input type="date" name="ngaybd" value="<?php echo $v["ngaybd"];?>" /></td>
+        	<td>Họ tên người nhận :</td>
+            <td><input type="text" name="hoten" value="<?php echo $v["hotennguoinhan"]; ?>" /></td>
         </tr>
         <tr>
-            <td>Ngày kết thúc :</td>
-            <td><input type="date" name="ngaykt" value="<?php echo $v["ngaykt"];?>" /></td>
+        	<td>Địa chỉ người nhận :</td>
+            <td><input type="text" name="dc" value="<?php echo $v["diachinguoinhan"]; ?>" /></td>
+        </tr>
+        <tr>
+        	<td>Điện thoại người nhận :</td>
+            <td><input type="text" name="dt" value="<?php echo $v["dienthoainguoinhan"]; ?>" /></td>
+        </tr>
+        <tr>
+        	<td>Ngày lập đơn hàng :</td>
+            <td><input type="date" name="hoten" value="<?php echo $v["hotennguoinhan"]; ?>" /></td>
+        </tr>
+        <tr>
+        	<td>Tổng tiền :</td>
+            <td><input type="text" name="tongtien" value="<?php echo $v["tongtien"];?>" disabled/></td>
+        </tr>
+        <tr>
+        	<td>Tình trạng đơn hàng :</td>
+            <td><input type="text" name="tinhtrang" value="<?php echo $v["tinhtrangdh"]; ?>" readonly/>
+          	</td>
         </tr>
      <?php
 } ?>

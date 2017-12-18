@@ -52,5 +52,41 @@ class nhanvien extends Db
 		$arr = array(":M" => $ma,":H"=>$ten, ":G" => $gt, ":N" => $ns , ":D" => $dc, ":DT" => $dt, ":E" => $e, ":C" => $cv, ":L" => $luong, ":T" => $tendn, ":MK" => $mk);
 		return $this->query($sql,$arr);
 	}
+	function getbyOneDH($ma)
+	{
+		$arr=array("$ma");
+		$sql="select * from donhang where manv=?";
+		return $this->query($sql,$arr);
+	}
+	function getbyOnePN($ma)
+	{
+		$arr=array("$ma");
+		$sql="select * from phieunhap where manv=?";
+		return $this->query($sql,$arr);
+	}
+	function getbyOnePX($ma)
+	{
+		$arr=array("$ma");
+		$sql="select * from phieuxuat where manv=?";
+		return $this->query($sql,$arr);
+	}
+	function getbyOneTT($ma)
+	{
+		$arr=array("$ma");
+		$sql="select * from tintuc where manv=?";
+		return $this->query($sql,$arr);
+	}
+	function getbyOneBLSP($ma)
+	{
+		$arr=array("$ma");
+		$sql="select * from binhluansp where manv=?";
+		return $this->query($sql,$arr);
+	}
+	function getbyOnePH($ma)
+	{
+		$arr=array("$ma");
+		$sql="select * from phanhoi where manv=?";
+		return $this->query($sql,$arr);
+	}
 }
 ?>

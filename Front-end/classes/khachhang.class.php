@@ -50,5 +50,17 @@ class khachhang extends Db
 		$arr = array(":M"=>$ma,":H" => $ten,":G" =>$gt,":N"=>$ns,":D"=>$dc,":DT"=>$dt,":E"=>$e,":T"=>$tendn,":MK"=>$mk);
 		return $this->query($sql,$arr);
 	}
+	function getbyOnePH($ma)
+	{
+		$arr=array("$ma");
+		$sql="select * from phanhoi where makh=?";
+		return $this->query($sql,$arr);
+	}
+	function getbyOneBLSP($ma)
+	{
+		$arr=array("$ma");
+		$sql="select * from binhluansp where makh=?";
+		return $this->query($sql,$arr);
+	}
 }
 ?>

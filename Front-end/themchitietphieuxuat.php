@@ -96,11 +96,11 @@ $b=$o3->getAll();
     </tr>
      <tr>
     	<td>Số lượng :</td>
-        <td><input type="text" name="sl" /></td>
+        <td><input type="number" name="sl" placeholder="Phải nhập số!" /></td>
     </tr>
      <tr>
     	<td>Đơn giá :</td>
-        <td><input type="text" name="dg" /></td>
+        <td><input type="number" name="dg" placeholder="Phải nhập số!" /></td>
     </tr>
      <tr>
     	<td>Thành tiền :</td>

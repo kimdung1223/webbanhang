@@ -9,7 +9,22 @@ if (isset($_POST['Submit']))
 	$ten = $_POST['tenkm'];
 	$ngaybd=$_POST['ngaybd'];
 	$ngaykt=$_POST['ngaykt'];
-	$data = $obj->insert($ma,$ten,$ngaybd,$ngaykt);
+	if($ma=="")
+	{
+		echo"Phải nhập mã!";
+	}
+	else if($ten=="")
+	{
+		echo "Phải nhập tên!";
+	}
+	else if(strtotime($ngaybd) > strtotime($ngaykt) )
+	{
+		echo "Ngày kết thúc phải sau ngày bắt đầu!";
+	}
+	else
+	{
+		$data = $obj->insert($ma,$ten,$ngaybd,$ngaykt);
+	}
 }
 	$data = $obj->getAll();
 ?>
@@ -19,7 +34,7 @@ if (isset($_POST['Submit']))
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Khuyến mãi</title>
-<link rel="stylesheet" href=""/>
+<link rel="stylesheet" href="css/form.css"/>
 <link rel="stylesheet" href="css/main_ad.css"/>
 </head>
 

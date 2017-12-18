@@ -38,10 +38,6 @@
 	{
 		echo "Mật khẩu không trùng khớp!!!";
 	}
-	else if(!is_int($dt))
-	{
-		echo "Số điện thoại sai!";
-	}
     else if (checkEmail($email)==false){
       echo "Định dạng email sai!<br>";
     }
@@ -86,7 +82,7 @@
 	  <label><b>Địa chỉ</b></label><br/>
       <input type="text" placeholder="Nhập địa chỉ" name="dc"><br/>
 	  <label><b>Điện thoại</b></label><br/>
-      <input type="text" placeholder="Nhập điện thoại" name="dt"><br/>
+      <input type="number" placeholder="Phải nhập số" name="dt"><br/>
       <label><b>Email</b></label><br/>
       <input type="text" placeholder="Nhập email" name="email" required><br/>
       <label><b>Tên đăng nhập</b></label>

@@ -7,7 +7,18 @@ if (isset($_POST['Submit']))
 {
 	$maloai = $_POST['maloai'];
 	$ten = $_POST['tenloai'];
-	$data = $obj->insert($maloai,$ten);
+	if($maloai=="")
+	{
+		echo "Vui lòng nhập mã loại!";
+	}
+	else if($ten=="")
+	{
+		echo "Vui lòng nhập tên loại!";	
+	}
+	else
+	{
+		$data = $obj->insert($maloai,$ten);
+	}
 }
 	$data = $obj->getAll();
 ?>
@@ -98,12 +109,12 @@ foreach($data as $r)
 		$obj = new loaisanpham();
 		//$ma = $_GET["maloai"];
 		$a=$obj->getbyOne( $r["maloaisp"]);
-		print_r($a);
+		//print_r($a);
+		echo "&nbsp;(".count($a)."&nbsp;sản phẩm)";
 		/*if($a!=Array())
 		{
 			echo "(".count($a) .")";
-		}*/
-?> ?></td>
+		}*/ ?></td>
         <td>
         <a href="xoaloaisanpham.php?maloai=<?php echo $r["maloaisp"]; ?>">Xóa</a> &nbsp;
         <a href="sualoaisanpham.php?maloai=<?php echo $r["maloaisp"]; ?>">Sửa</a>

@@ -38,9 +38,16 @@ if(isset($_POST['sm']))
             }
         }
 	}
+	if($mota=="")
+	{
+		echo "Vui lòng nhập mô tả!";
+	}
+	else
+	{
 		$data = $obj->update($maloai,null,$tensp,$name2,$mota,$dvi,$gia);
 		//print_r($data);
 		header("location:themsanpham.php");
+	}
 }
 $o2 = $obj->getOne($ma);
 $data=$obj->getAll();
@@ -114,7 +121,7 @@ $a= $o3->getAll();
     </tr>
      <tr>
     	<td>Tên sản phẩm :</td>
-        <td><input type="text" name="tensp" vlaue="<?php echo $v["tensp"];?>" /></td>
+        <td><input type="text" name="ten" value="<?php echo $v["tensp"];?>" /></td>
     </tr>
      <tr>
     	<td>Hình ảnh :</td>

@@ -98,7 +98,7 @@ $a= $o2->getAll();
     </tr>
      <tr>
     	<td>Điện thoại người nhận :</td>
-        <td><input type="text" name="dt" /></td>
+        <td><input type="number" name="dt" /></td>
     </tr>
      <tr>
     	<td>Ngày lập đơn hàng :</td>
@@ -111,11 +111,7 @@ $a= $o2->getAll();
     </tr>
    <tr>
     	<td>Tình trạng đơn hàng :</td>
-        <td>
-        	<select name="tinhtrang" >
-        		<option>Đã xử lý</option>
-                <option> Chưa xử lý</option>
-            </select>
+        <td><input type="text" name="tinhtrang" value="Chưa xử lý" readonly/></td>
         
         </td>
 
@@ -160,11 +156,15 @@ foreach($data as $r)
         <?php 
 		if(strcmp($r["tinhtrangdh"],"Đã xử lý")==0)
 		{
-			echo "x";
-		}
+			echo "Đã lưu!";?>
+			<a href="suadonhang.php?madh=<?php echo $r["madh"];?>">Sửa</a>
+		<?php }
 		else
 		{?>
-        	<a href="xoadonhang.php?madh=<?php echo $r["madh"]; ?>">Xóa</a><br/><?php }?>
+        	<a href="duyetdonhang.php?madh=<?php echo $r["madh"];?>">Duyệt</a><br/>
+        	<a href="xoadonhang.php?madh=<?php echo $r["madh"]; ?>">Xóa</a>&nbsp;
+            <a href="suadonhang.php?madh=<?php echo $r["madh"];?>">Sửa</a>
+            <?php }?>
         </td>
     </tr>
     <?php

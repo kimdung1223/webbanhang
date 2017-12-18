@@ -9,12 +9,18 @@ $o3=new donhang();
 //print_r($_POST);
 if (isset($_POST['Submit']))
 {
-	$mapn=$_POST['mapx'];
+	$mapx=$_POST['mapx'];
 	$madh=$_POST['madh'];
 	$manv=$_POST['manv'];
 	$ngay=$_POST['ngay'];
-	$data = $obj->insert($mapn,$madh,$manv,$ngay,0);
-	
+	if($mapx=="")
+	{
+		echo "Vui lòng nhập mã phiếu xuất!";
+	}
+	else
+	{
+		$data = $obj->insert($mapx,$madh,$manv,$ngay,0);
+	}
 }
 $data = $obj->getAll();
 $a= $o2->getAll();

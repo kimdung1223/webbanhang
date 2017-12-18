@@ -1,5 +1,4 @@
 <?php
-
 include "config.php";
 include "autoload.php";
 $obj = new sanpham();
@@ -36,7 +35,26 @@ if (isset($_POST['Submit']))
             }
         }
 	}
-	$data = $obj->insert($maloai,$ma,$tensp,$name2,$mota,$dvi,$gia);
+	if($ma=="")
+	{
+		echo "Vui lòng nhập mã sản phẩm!";
+	}
+	else if($tensp=="")
+	{
+		echo "Vui lòng nhập tên sản phẩm!";
+	}
+	else if($mota=="")
+	{
+		echo " Vui lòng nhập mô tả!";
+	}
+	else if($gia=="")
+	{
+		echo "Vui lòng nhập giá tiền!";
+	}
+	else
+	{
+		$data = $obj->insert($maloai,$ma,$tensp,$name2,$mota,$dvi,$gia);
+	}
 }
 	$data = $obj->getAll();
 	$a=$o3->getAll();
@@ -123,11 +141,19 @@ if (isset($_POST['Submit']))
     </tr>
     <tr>
     	<td>Đơn vị tính :</td>
-        <td><input type="text" name="dvt" /></td>
+        <td>
+        	<select name="dvt">
+            	<option>Chai</option>
+                <option>Bộ</option>
+                <option>Hũ</option>
+                <option>Cây</option>
+                <option>Bánh</option>
+            </select>
+        </td>
     </tr>
     <tr>
     	<td>Giá tiền :</td>
-        <td><input type="text" name="gia" placeholder="Nhập dữ liệu số!"/></td>
+        <td><input type="number" name="gia" placeholder="Nhập dữ liệu số!"/></td>
     </tr>
     <tr>
     	<td colspan="2" align="center"><input type="submit" value="Thêm" name="Submit"></td>
@@ -155,7 +181,21 @@ foreach($data as $r)
     <tr>
     	<td> <?php echo $r["maloaisp"]; ?></td>
         <td> <?php echo $r["masp"]; ?></td>
-        <td><?php echo $r["tensp"]; ?></td>
+        <td width="15%">
+			<b><?php echo $r["tensp"]; ?></b>
+        	<?php
+			$obj = new sanpham();
+			$a=$obj->getbyOneCTDH( $r["masp"]);
+			$b=$obj->getbyOneCTPN( $r["masp"]);
+			$c=$obj->getbyOneCTPX( $r["masp"]);
+			$d=$obj->getbyOneBLSP( $r["masp"]);
+			echo "<br>(Có&nbsp;".count($a)."&nbsp;đơn hàng được lập"; 
+			echo "<br> &nbsp;Có&nbsp;".count($b)."&nbsp;phiếu nhập được lập";
+			echo "<br> &nbsp;Có&nbsp;".count($c)."&nbsp;phiếu xuất được lập";  
+			echo "<br> &nbsp;Có&nbsp;".count($d)."&nbsp;được bình luận)"; 
+			?>
+        
+        </td>
         <td><img src="hinhanh/<?php echo $r["hinhanh"]; ?>"/></td>
         <td> <?php echo $r["motasp"]; ?></td>
         <td> <?php echo $r["dvt"]; ?></td>
